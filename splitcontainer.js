@@ -95,9 +95,7 @@
                      
                   
                       
-                    // if(this.base.$element.find('div:visible:first').hasClass('scontainer-separator')) this.base.$element.find('div:visible:first').hide();
-                   //  if(this.base.$element.find('div:visible:last').hasClass('scontainer-separator')) this.base.$element.find('div:visible:last').hide();
-                      });
+                         });
                       this.base.$element.trigger("hidepanel",this.selected);
                       this.base.updatePanels();
                 
