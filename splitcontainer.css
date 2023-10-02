@@ -1,0 +1,20 @@
+.scontainer{
+    position:relative;
+    display:flex; 
+    
+    overflow: hidden;
+}
+.scontainer-panel{
+  
+    position:relative;
+    white-space: nowrap; 
+    min-width:0px;
+   
+ 
+} 
+.scontainer-separator{ 
+    background-color:gray;
+    min-width:8px;
+    min-height:8px;
+    z-index:9999;
+}  

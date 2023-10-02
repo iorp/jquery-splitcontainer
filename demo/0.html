@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery Plugin Template</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+    <script src="../splitcontainer.js"></script>
+    <link rel="stylesheet" href="../splitcontainer.css">
+</head>
+<body>
+
+    <div id="e0">   </div>
+    
+    <div id="e1">   </div>
+<script>
+ 
+ 
+    $(document).ready(function() { 
+           
+  
+                
+  
+           createExampleControls($("#e0"));
+        $("#e0").SplitContainer({
+              mode:'row',  
+              panels:[
+                  {style:'background-color:red;',html:'A'},
+                  {style:'width:40%;background-color:green;',html:'B'},
+                  {style:'background-color:blue;',html:'C'},
+                  {locked:true,style:'width:10%;background-color:yellow;',html:'D'} 
+              ],
+              
+              on:{
+                                //  let events = ['addpanel','removepanel','showpanel','hidepanel','lockpanel','unlockpanel'];
+                               
+                                addpanel:(e)=>{  console.log(e)},
+                                removepanel:(e)=>{  console.log(e)},
+                                showpanel:(e)=>{  console.log(e)},
+                                hidepanel:(e)=>{  console.log(e)},
+                                lockpanel:(e)=>{  console.log(e)},
+                                unlockpanel:(e)=>{  console.log(e)},
+                                clickpanel:(e)=>{ 
+                                   
+                                let index =   $(e.target).parent().children('.scontainer-panel').index(e.target)
+                                console.log('a',index);
+                               
+                                //   this.base.$element
+                                $('#e0panelSelector').val(index);
+                                  
+                                 // console.log($('#e0panelSelector'));  $('#e0panelSelector').val($(e.target).index('.scontainer-panel')); console.log(e.type,e.target,$(e.target).index('.scontainer-panel'));},
+                                           
+                                 }
+                              }
+           });
+ 
+       
+          
+ 
+         createExampleControls($("#e1"));
+          $("#e1").SplitContainer({
+              mode:'column',  
+              panels:[
+                  {style:'background-color:red;',html:'A'},
+                  {style:'height:40%;background-color:green;',html:'B'},
+                  {style:'background-color:blue;',html:'C'},
+                  {locked:true,style:'height:10%;background-color:yellow;',html:'D'} 
+              ],
+              on:{
+                                //  let events = ['addpanel','removepanel','showpanel','hidepanel','lockpanel','unlockpanel'];
+                               
+                                addpanel:(e)=>{  console.log(e)},
+                                removepanel:(e)=>{  console.log(e)},
+                                showpanel:(e)=>{  console.log(e)},
+                                hidepanel:(e)=>{  console.log(e)},
+                                lockpanel:(e)=>{  console.log(e)},
+                                unlockpanel:(e)=>{  console.log(e)},
+                                clickpanel:(e)=>{   
+                                  let index =   $(e.target).parent().children('.scontainer-panel').index(e.target);
+                                   $('#e1panelSelector').val(index); 
+                                  console.log('b',index);
+                                  },
+                                           
+                                 }
+          });
+ 
+       
+ 
+ 
+         
+       
+      });
+ 
+   function createExampleControls(target){
+  
+  $('<div>', {
+              "class": "",
+              "html": [
+                  
+                  $('<input>',{ id:target.attr('id')+"panelSelector",type:'text',style:'width:30px;',value:0}),
+ 
+ 
+                  $('<button>',{text:'append',click:()=>{
+                      target.data('fn.SplitContainer').panels().append(
+                          {style:'background-color:green',html: 'Panel '+ target.data('fn.SplitContainer').panels().selected.length}
+                      );
+                  }}),
+ 
+                  $('<button>',{text:'prepend',click:()=>{
+                      target.data('fn.SplitContainer').panels().prepend(
+                          {style:'background-color:green',html: 'Panel '+ target.data('fn.SplitContainer').panels().selected.length}
+                      );
+                  }}),
+ 
+                  $('<button>',{text:'remove',click:()=>{
+                      target.data('fn.SplitContainer').panels($('#'+target.attr('id')+"panelSelector").val()).remove();
+                  }}),
+                  
+                  
+                  $('<button>',{text:'hide',click:()=>{
+                     
+                      target.data('fn.SplitContainer').panels($('#'+target.attr('id')+"panelSelector").val()).hide();
+                  }}),
+ 
+                  
+                  $('<button>',{text:'show',click:()=>{
+                      target.data('fn.SplitContainer').panels($('#'+target.attr('id')+"panelSelector").val()).show();
+                  }}),
+ 
+                  $('<button>',{text:'lock',click:()=>{
+                      target.data('fn.SplitContainer').panels($('#'+target.attr('id')+"panelSelector").val()).lock();
+                  }}),
+ 
+                  $('<button>',{text:'unlock',click:()=>{
+                      target.data('fn.SplitContainer').panels($('#'+target.attr('id')+"panelSelector").val()).unlock();
+                  }}), 
+ 
+                  $('<button>',{text:'lock all',click:()=>{
+                      target.data('fn.SplitContainer').panels().lock();
+                  }}),
+                  $('<button>',{text:'unlock all',click:()=>{
+                      target.data('fn.SplitContainer').panels().unlock();
+                  }}),
+ 
+                   
+              ]
+          })
+ .insertBefore(target);
+ }
+ 
+ </script>
+<body>
+
+</body>
+</html>
+
